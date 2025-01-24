@@ -11,6 +11,8 @@ const app = express();
 const port = 2001;
 const host = '0.0.0.0';  // Para escuchar todas las interfaces
 
+//maiu
+
 //express views 
 app.set('view engine', 'ejs')
 app.set('views', __dirname+'/views')
