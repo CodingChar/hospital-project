@@ -1,0 +1,165 @@
+USE SistemaHospital;
+
+-- Crear tabla de Pacientes
+CREATE TABLE Pacientes (
+    PacienteID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Apellido VARCHAR(50),
+    FechaNacimiento DATE,
+    Sexo CHAR(1),
+    Direccion VARCHAR(100),
+    Telefono VARCHAR(20)
+);
+
+-- Crear tabla de Emergencias
+CREATE TABLE Emergencias (
+    EmergenciaID INT AUTO_INCREMENT PRIMARY KEY,
+    PacienteID INT,
+    FechaHora DATETIME,
+    Descripcion TEXT,
+    Prioridad VARCHAR(20),
+    FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID)
+);
+
+-- Crear tabla de Historias Clínicas
+CREATE TABLE Historias_Clinicas (
+    HistoriaClinicaID INT AUTO_INCREMENT PRIMARY KEY,
+    PacienteID INT,
+    Fecha DATE,
+    Diagnostico TEXT,
+    Tratamiento TEXT,
+    Observaciones TEXT,
+    FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID)
+);
+
+-- Crear tabla de Hospitalizaciones
+CREATE TABLE Hospitalizaciones (
+    HospitalizacionID INT AUTO_INCREMENT PRIMARY KEY,
+    PacienteID INT,
+    FechaIngreso DATE,
+    FechaAlta DATE,
+    Habitacion VARCHAR(20),
+    Cama VARCHAR(20),
+    NotaMedica TEXT,
+    FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID)
+);
+
+-- Crear tabla de Farmacia
+CREATE TABLE Farmacia (
+    MedicamentoID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Descripcion TEXT,
+    Existencias INT
+);
+
+-- Crear tabla de Prescripciones
+CREATE TABLE Prescripciones (
+    PrescripcionID INT AUTO_INCREMENT PRIMARY KEY,
+    MedicamentoID INT,
+    HospitalizacionID INT,
+    Dosis VARCHAR(50),
+    Frecuencia VARCHAR(50),
+    Duracion VARCHAR(50),
+    FOREIGN KEY (MedicamentoID) REFERENCES Farmacia(MedicamentoID),
+    FOREIGN KEY (HospitalizacionID) REFERENCES Hospitalizaciones(HospitalizacionID)
+);
+
+
+-- añádelo en la tabla emergencias
+INSERT INTO Emergencias (PacienteID, FechaHora, Descripcion, Prioridad)
+VALUES (8, NOW(), 'Dolor abdominal severo', 'Alta');
+
+
+-- añádelo en la tabla farmacia
+INSERT INTO Farmacia (Nombre, Descripcion, Existencias)
+VALUES ('Omeprazol', 'Inhibidor de la bomba de protones', 150)
+ON DUPLICATE KEY UPDATE Existencias = Existencias;
+
+
+-- Primero obtenemos el ID de la última hospitalización añadida para este paciente
+-- Suponemos que es la única o la más reciente
+INSERT INTO Prescripciones (MedicamentoID, HospitalizacionID, Dosis, Frecuencia, Duracion)
+VALUES ((SELECT MedicamentoID FROM Farmacia WHERE Nombre = 'Omeprazol'), 
+        (SELECT HospitalizacionID FROM Hospitalizaciones WHERE PacienteID = 8 ORDER BY FechaIngreso DESC LIMIT 1),
+        '20mg', 'Una vez al día', '3 días');
+
+
+-- actualiza la tabla farmacia
+
+UPDATE Farmacia
+SET Existencias = Existencias - (SELECT COUNT(*) FROM Prescripciones WHERE MedicamentoID = (SELECT MedicamentoID FROM Farmacia WHERE Nombre = 'Omeprazol'))
+WHERE Nombre = 'Omeprazol';
+
+
+
+-- añadir un paciente
+INSERT INTO Pacientes (Nombre, Apellido, FechaNacimiento, Sexo, Direccion, Telefono)
+VALUES ('Juan', 'Pérez', '1980-05-15', 'M', 'Calle 123, Ciudad', '1234567890');
+
+-- añadir una hospitalización
+INSERT INTO Hospitalizaciones (PacienteID, FechaIngreso, Habitacion, Cama, NotaMedica)
+VALUES (1, '2024-01-01', 'A101', '101', 'Hospitalización por infeccion');
+
+-- añadir una emergencia
+INSERT INTO Emergencias (PacienteID, FechaHora, Descripcion, Prioridad)
+VALUES (1, '2024-01-01', 'Dolor abdominal severo', 'Alta');
+
+-- añadir una historia clínica
+INSERT INTO Historias_Clinicas (PacienteID, Fecha, Diagnostico, Tratamiento, Observaciones)
+VALUES (1, '2024-01-01', 'Dolor abdominal', 'Tratamiento con antibióticos', 'Observaciones sobre el paciente');
+
+
+-- añadir una prescripción
+INSERT INTO Prescripciones (MedicamentoID, HospitalizacionID, Dosis, Frecuencia, Duracion)
+VALUES (1, 1, '20mg', 'Una vez al día', '3 días');
+
+-- actualizar la tabla farmacia
+UPDATE Farmacia
+SET Existencias = Existencias - (SELECT COUNT(*) FROM Prescripciones WHERE MedicamentoID = (SELECT MedicamentoID FROM Farmacia WHERE Nombre = 'Omeprazol'))
+WHERE Nombre = 'Omeprazol';
+
+-- eliminar una hospitalización
+DELETE FROM Hospitalizaciones WHERE HospitalizacionID = 1;
+
+-- eliminar una emergencia
+DELETE FROM Emergencias WHERE EmergenciaID = 1;
+
+-- eliminar una historia clínica
+DELETE FROM Historias_Clinicas WHERE HistoriaClinicaID = 1;
+
+-- eliminar una prescripción
+DELETE FROM Prescripciones WHERE PrescripcionID = 1;
+
+-- eliminar un paciente
+DELETE FROM Pacientes WHERE PacienteID = 1;
+
+-- consultar la tabla farmacia
+SELECT * FROM Farmacia;
+
+-- consultar la tabla prescripciones
+SELECT * FROM Prescripciones;
+
+-- consultar la tabla hospitalizaciones
+SELECT * FROM Hospitalizaciones;
+
+-- consultar la tabla emergencias
+SELECT * FROM Emergencias;
+
+-- consultar la tabla historias clínicas
+SELECT * FROM Historias_Clinicas;
+
+-- consultar la tabla pacientes
+SELECT * FROM Pacientes;
+
+--consultar prescripcion por id
+SELECT * FROM Prescripciones WHERE PrescripcionID = 1;
+
+--consultar hospitalizaciones por paciente
+SELECT * FROM Hospitalizaciones WHERE PacienteID = 1;
+
+--consultar emergencias por paciente
+SELECT * FROM Emergencias WHERE PacienteID = 1;
+
+--consultar historias clínicas por paciente
+SELECT * FROM Historias_Clinicas WHERE PacienteID = 1;
+

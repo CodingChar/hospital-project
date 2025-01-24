@@ -1,0 +1,43 @@
+:root {
+    --primary-color: #60B5D4;
+    --secondary-color: #3F6288;
+    --background-color: #DBF3EC;
+    --light-blue: #ABE4E9;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.table {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.table thead th {
+    background-color: var(--light-blue);
+    color: var(--secondary-color);
+}

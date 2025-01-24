@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+    
+    Procure usarlo solamente cuando quiera desplegar los resultados de un paciente;
+
+    DATOS DE EJEMPLO: 
+
+    {"HistoriaClinicaID":1,
+    "PacienteID":8,
+    "Fecha":"2025-01-21T00:00:00.000Z",
+    "Diagnostico":"Infeccin respiratoria",
+    "Tratamiento":"Antibiticos y reposo",
+    "Observaciones":"El paciente mostr mejora despus de 5 das de tratamiento",
+    "Nombre":"Fernando",
+    "Apellido":"Santana",
+    "FechaNacimiento":"1979-09-17T00:00:00.000Z",
+    "Sexo":"M",
+    "Direccion":"Calle Jazmn No. 44, La Vega","Telefono":"809-555-2134"}
+
+    -->
+
+    <link rel="stylesheet" href="/styles/view.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h2>Historia clinica</h2>
+        <a href="/historias-clinicas">volver atras</a>
+    </header>
+    <div class="container">
+        <div>
+            <span class="fecha"><%=paciente.Fecha%></span>
+        </div>
+        <div>
+            <p>ID del historial: <span> <%=paciente.HistoriaClinicaID%> </span></p>
+            <p>ID del paciente: <span> <%=paciente.PacienteID%> </span></p>
+        </div>
+        <div>
+            <p>Nombre Completo: <span><%=paciente.Nombre%> <%=paciente.Apellido%></span></p>
+        </div>
+        <div>
+            <p>Fecha de Nacimiento: <span><%=paciente.FechaNacimiento%></span></p>
+        </div>
+
+    </div>
+    
+</body>
+
+</html>

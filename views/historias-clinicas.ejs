@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Clínico</title>
+    <style>
+        body {
+            background-color: #60B5D4;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container .results{
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            color:red;
+            margin:20px
+        }
+        .form-group {
+            margin-bottom: 15px; 
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #60B5D4;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background-color: #60B5D4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #60B5D4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registro de Historial Clínico EJS</h2>
+
+        <div class="results">
+            <% if (typeof paciente !== 'undefined' && paciente) { %>
+              <%if(Object.keys(paciente).length==0){%>
+                No hay resultados disponibles.
+              <%}else{%>
+                <p><span class="label">ID de Historia Clínica:</span> <%= paciente.HistoriaClinicaID %></p>
+                <p><span class="label">ID de Paciente:</span> <%= paciente.PacienteID %></p>
+                <p><span class="label">Fecha de Consulta:</span> <%= new Date(paciente.Fecha).toLocaleDateString('es-ES') %></p>
+                <p><span class="label">Diagnóstico:</span> <%= paciente.Diagnostico %></p>
+                <p><span class="label">Tratamiento:</span> <%= paciente.Tratamiento %></p>
+                <p><span class="label">Observaciones:</span> <%= paciente.Observaciones %></p>
+                <p><span class="label">Fecha de Nacimiento:</span> <%= new Date(paciente.FechaNacimiento).toLocaleDateString('es-ES') %></p>
+                <p><span class="label">Sexo:</span> <%= paciente.Sexo === 'M' ? 'Masculino' : 'Femenino' %></p>
+                <p><span class="label">Dirección:</span> <%= paciente.Direccion %></p>
+                <p><span class="label">Teléfono:</span> <%= paciente.Telefono %></p>
+               <%}%>
+            <%}else{%>
+                Esperando a que se ingrese una consulta
+            <%}%>
+            </div>
+
+        <!--{ PacienteID, Fecha, Diagnostico, Tratamiento, Observaciones }-->>
+        <form id="historiaClinicaForm" action="/view/historias-clinicas" method="POST">
+            <div class="form-group">
+                <label for="historiaClinicaID">Historia Clínica ID:</label>
+                <input type="text" id="historiaClinicaID" name="historiaClinicaID" >
+            </div> 
+
+            <div class="form-group">
+                <label for="pacienteID">ID del Paciente:</label>
+                <input type="text" id="pacienteID" name="PacienteID" >
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="Fecha" >
+            </div>
+
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico:</label>
+                <textarea id="diagnostico" name="Diagnostico" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tratamiento">Tratamiento:</label>
+                <textarea id="tratamiento" name="Tratamiento" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="observaciones">Observaciones:</label>
+                <te8xtarea id="observaciones" name="Observaciones"></textarea>
+            </div>
+
+            <button type="submit">Guardar Historial</button>
+        </form>
+    </div>
+</body>
+</html>
