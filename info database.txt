@@ -65,7 +65,7 @@ CREATE TABLE Prescripciones (
 );
 
 
--- añádelo en la tabla emergencias
+-- añáde en la tabla emergencias
 INSERT INTO Emergencias (PacienteID, FechaHora, Descripcion, Prioridad)
 VALUES (8, NOW(), 'Dolor abdominal severo', 'Alta');
 

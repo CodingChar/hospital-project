@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Arbutus&family=Caveat:wght@400..700&family=Love+Ya+Like+A+Sister&family=Maiden+Orange&family=Mynerve&family=Nosifer&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Silkscreen&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Wallpoet&display=swap');
+
+body {
+    font-family: "Tinos", serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #DBF3EC;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #3F6288;
+    border-radius: 5px;
+    background-color: #ABE4E9;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 5px 0;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #DBF3EC;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3F6288;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #60B5D4;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+
+p {
+    margin-top: 10px;
+    color: #ABE4E9;
+}

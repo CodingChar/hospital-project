@@ -1,5 +1,5 @@
 // klk mi gente aqui xbox wii con el oso yogi
-const API_BASE_URL = "http://54.39.139.122:3000/hospitalizaciones"; // API
+const API_BASE_URL = "http://54.39.139.122:2001/hospitalizaciones"; // API
 
 // OBTENER HOSPITALIZACIONES
 async function fetchHospitalizaciones() {

@@ -81,6 +81,10 @@ const getInventarioRoute = (app: Express, pool: Pool) => {
             });
         });
     });
+
+    app.get('/view/hospitalizaciones', (req: Request, res: Response) => {
+        res.render('hospitalizaciones')
+    })
 }
 
 export default getInventarioRoute;

@@ -6,6 +6,8 @@ import getInventarioRoute from './servicios/inventario.servicios';
 import { getHistorialClinicoRoute } from './servicios/historialclinico.servicios';
 import createUserRoute from './servicios/newuser.servicios';
 import hospitalizacionesRoute from './servicios/hospitalizaciones';
+import pacientes from './servicios/pacientes.servicios';
+import getEmergenciasRoute from './servicios/emergencias.servicios';
 
 const app = express();
 const port = 2001;
@@ -53,6 +55,11 @@ createUserRoute(app, pool);
 
 //Usar la ruta de hospitalizaciones
 hospitalizacionesRoute(app, pool);
+//Usar la ruta de pacientes
+app.use(pacientes);
+//Usar la ruta de emeregencas 
+getEmergenciasRoute(app, pool);
+
 
 // Start the Express server
 app.listen(port, host, () => {

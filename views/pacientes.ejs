@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management</title>
+    <link rel="stylesheet" href="/styles/pacientes.css">
+</head>
+
+<body>
+    <h1>Patient Management</h1>
+
+    <section>
+        <h2>Create Patient</h2>
+        <form id="CreatePatient">
+            <label for="id">ID (Document)</label>
+            <input type="text" id="id" name="id" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            <button type="submit">Create</button>
+        </form>
+        <p id="createResponse"></p>
+    </section>
+
+    <section>
+        <h2>Get all Patients</h2>
+        <button id="getAllPatients">Get Patients</button>
+        <ul id="PatientsList"></ul>
+    </section>
+
+    <section>
+        <h2>Find by ID</h2>
+        <form id="findPatientsForm">
+            <input type="text" id="findId" name="findId" required>
+            <button type="submit">Find</button>
+        </form>
+        <p id="findResponse"></p>
+    </section>
+
+    <script src="/scripts/pacientes.js"></script>
+</body>
+
+</html>
