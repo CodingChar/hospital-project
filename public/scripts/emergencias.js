@@ -1,6 +1,6 @@
 document.getElementById('registro-pacientes').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evita el envío del formulario
-
+    //event.preventDefault(); // Evita el envío del formulario
+    
     // Obtener los valores de los campos del formulario
     const nombre = document.getElementById('nombre').value;
     const edad = document.getElementById('edad').value;
@@ -9,6 +9,7 @@ document.getElementById('registro-pacientes').addEventListener('submit', functio
     // Validar los campos
     if (nombre === '' || edad === '' || motivo === '') {
         alert('Por favor, complete todos los campos.');
+        event.preventDefault(); // Evita el envío del formulario
         return;
     }
 
@@ -16,6 +17,5 @@ document.getElementById('registro-pacientes').addEventListener('submit', functio
     alert('Paciente registrado con éxito.');
 
     // Limpiar el formulario
-    document.getElementById('registro-pacientes').reset();
+    
 });
-

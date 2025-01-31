@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="vieport" content="width=divece-width, initial-scale=1">
+    <title> gestion de farmacia</title>
+    <link rel="stylesheet" href="/styles/farmacia.css">
+</head>
+
+<body>
+    <header>
+        <h1>agregar productos de la Farmacia</h1>
+        <div id="filters">
+            <input type="text" id="searchInput" placeholder="Buscar productos..." />
+
+            <button><a href="/view/farmacia"> lista de productos</a></button>
+        </div>
+    </header>
+
+    <main>
+        <form id="productForm">
+            <label>
+                Nombre del producto:
+                <input type="text" id="productName" required />
+            </label>
+            <label>
+                Tipo de producto:
+                <select id="productType">
+                    <option value="Medicamento">Medicamento</option>
+                    <option value="Suplemento">Suplemento</option>
+                    <option value="Cuidado personal">Cuidado personal</option>
+                </select>
+            </label>
+            <label>
+                Cantidad en existencia:
+                <input type="number" id="productStock" min="0" required />
+            </label>
+
+            <label>
+                Precio del producto:
+                <input type="number" id="productPrice" min="0" step="0.01" required />
+            </label>
+            <label>
+                Fecha de vencimiento:
+                <input type="date" id="productExpiry" required />
+            </label>
+            <label>
+                Imagen del producto:
+                <input type="file" id="productImage" accept="image/*" />
+            </label>
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </main>
+
+    <script src="/scripts/farmacia.js"></script>
+</body>
+
+</html>

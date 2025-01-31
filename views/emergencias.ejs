@@ -10,7 +10,7 @@
 
     <h1>Registro de Pacientes en Emergencia</h1>
 
-    <form id="registro-pacientes">
+    <form id="registro-pacientes" action="/emergencias" method="post">
         <label for="nombre">Nombre completo:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -41,6 +41,7 @@
         <label for="motivo">Motivo de la Emergencia:</label>
         <textarea id="motivo" name="motivo" required></textarea><br><br>
 
+        
         <button type="submit">Registrar Paciente</button>
     </form>
     

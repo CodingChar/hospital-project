@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 import { Express } from 'express';
 import { Pool } from 'mysql2';
 
+
+
+
+
 export const getHistorialClinicoRoute = (app: Express, pool: Pool) => {
     app.get('/historias-clinicas', (req: Request, res: Response) => {
         res.render('historias-clinicas')

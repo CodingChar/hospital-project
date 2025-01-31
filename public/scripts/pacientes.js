@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 
-const serverUrl = 'http://54.39.139.122:2001';
+const serverUrl = 'http://54.39.139.122:2001s'; //RUTA POR DEFINIR
 
 document.getElementById('createPatientForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -9,7 +9,7 @@ document.getElementById('createPatientForm').addEventListener('submit', async (e
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').value;
 
-    const response = await fetch(`${serverUrl}/patients`, {
+    const response = await fetch(`${serverUrl}/patients`, { //
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, name, age})

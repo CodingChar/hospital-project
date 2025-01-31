@@ -8,6 +8,8 @@ import createUserRoute from './servicios/newuser.servicios';
 import hospitalizacionesRoute from './servicios/hospitalizaciones';
 import pacientes from './servicios/pacientes.servicios';
 import getEmergenciasRoute from './servicios/emergencias.servicios';
+import getFarmaciaRoute from './servicios/farmacias.servicios';
+
 
 const app = express();
 const port = 2001;
@@ -18,6 +20,7 @@ const host = '0.0.0.0';  // Para escuchar todas las interfaces
 //express views 
 app.set('view engine', 'ejs')
 app.set('views', __dirname+'/views')
+
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}))
 app.use(express.static('./public'));
@@ -59,9 +62,9 @@ hospitalizacionesRoute(app, pool);
 app.use(pacientes);
 //Usar la ruta de emeregencas 
 getEmergenciasRoute(app, pool);
+//Usar la ruta de farmacia
+getFarmaciaRoute(app, pool)
 
-
-// Start the Express server
 app.listen(port, host, () => {
     console.log(`Servidor corriendo en http://${host}:${port}`);
 });
